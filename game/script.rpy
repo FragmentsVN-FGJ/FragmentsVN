@@ -88,6 +88,38 @@ image dealer = "sprites/dealer.png"
 image priest = "sprites/priest.png"
 
 
+image sineFD:
+    "sprites/sine_0.png"
+    pause 0.1
+    "sprites/sine_1.png"
+    pause 0.1
+    "sprites/sine_2.png"
+    pause 0.1
+    "sprites/sine_3.png"
+    pause 0.1
+    repeat
+
+image cosFD:
+    "sprites/cosine2_0.png"
+    pause 0.1
+    "sprites/cosine2_1.png"
+    pause 0.1
+    "sprites/cosine2_2.png"
+    pause 0.1
+    "sprites/cosine2_3.png"
+    pause 0.1
+    repeat
+
+image sine:
+    "sprites/cosine_0.png"
+    pause 0.1
+    "sprites/cosine_1.png"
+    pause 0.1
+    "sprites/cosine_2.png"
+    pause 0.1
+    "sprites/cosine_3.png"
+    pause 0.1
+    repeat
 
 define c = Character("Chris")
 
@@ -432,13 +464,31 @@ label concert:
 
     c "Drugs?"
 
+    show amy normal
+
     a "Aren't you kinda curious? People are changed by trips, you know."
 
     c "I'm fine just the way I am, thanks. If you're so interested, why don't you try it yourself?"
 
     "Amy flashes an annoying smile at me."
 
+    show amy disappoint
+
     a "I have to see that it's safe first, right?"
+
+    show amy normal:
+        zoom 0.7
+        yanchor 0.5
+        xanchor 0.5
+        yalign 0.5
+        xalign 0.2
+
+    show dealer with moveinright:
+        zoom 0.7
+        yanchor 0
+        xanchor 0.5
+        yalign 0
+        xalign 0.8
 
     d "Look, you gonna choose now? I don't got all day."
 
@@ -449,55 +499,108 @@ label concert:
 
     menu:
         "Take the shrooms and try them":
-
-            "So I taste the shrooms." 
-            "At first, I don't notice any real effect. Then there's this odd multicolored noise covering my field of vision."
-            "I think I need to lie down a bit."
-            "For some reason, I have ten fingers in one hand. Huh."
-
-            "I'm on the top of mountain somewhere in the Himalayas. I can see Kathmandu from here."
-
-            "Oh yeah, and a flying saucer. It's quite nice, hovering over me and all."
-
-            "And now it's pulling me in. I don't see any grayheaded aliens with bulging black eyes, though."
-
-            "At first I see no-one at all. Then my vision changes, and the whole saucer is filled with strange, pulsating beings of many colors."
-
-            f "Attention, human! We are aliens from the fifth dimension, and we have come to enlighten you in our ways."
-
-            "Suddenly I am not in the saucer. I am watching a thread of light going up and down, up and down like a makeshift rollercoaster."
-
-            sin  "Attention, human! This is your lifeline."
-
-            "Of course. I already knew that."
-
-            sin "From your limited four-dimensional perspective, time exists and your life is full of possibilities."
-            sin "But here in the fifth dimension, you can see the thread of fate as it's truly spun."
-
-            "Everything this lovable sine wave tells me makes perfect sense. It's great! Why didn't I ever realize how great it is before?"
-
-            cos "From an inexhaustible beginning to an incomprehensible end, your butterfly-life goes up and down."
-            cos "It is only your resistance that creates suffering. Feel your purpose, and step fearlessly onwards!"
-
-            sin "Attention, human! The experience has ended. Thank you for flying with us, and please remember that we appreciate all feedback."
-            sin "Collect frequent tripper points for extra enlightenment!"   
+            jump ufo
 
         "Buy them, but refuse to use them":
+            jump trouble
 
-            "I buy the shrooms, and the dealer leaves us alone. Thank god for that."
+label ufo:
 
-            a "Well? You gonna try them now?"
+    hide amy normal
+    hide dealer
+            
+    "At first, I don't notice any real effect. Then there's this odd multicolored noise covering my field of vision."
 
-            c "No way." 
-            "This is going way too far. How am I gonna get rid of these now?"
+    scene trip with dissolve
+    pause 1.0
 
-            "Maybe I can just discreetly dump them into a trash bin somewhere?"
+    "I think I need to lie down a bit."
+    "For some reason, I have ten fingers in one hand. Huh."
 
-            "I realize that Amy has disappeared into the crowd. I wonder w-"
+    "I'm on the top of mountain somewhere in the Himalayas. I can see Kathmandu from here."
+    scene ufo with dissolve
 
-            "My thinking freezes as I feel a burly hand descend on my shoulders."
+    "Oh yeah, and a flying saucer. It's quite nice, hovering over me and all."
 
-            g "Excuse me, sir? You're coming with me."
+    "And now it's pulling me in. I don't see any grayheaded aliens with bulging black eyes, though."
+
+    "At first I see no-one at all. Then my vision changes, and the whole saucer is filled with strange, pulsating beings of many colors."
+
+    show sine with dissolve:
+        zoom 0.5
+        yanchor 0
+        xanchor 0.5
+        yalign 0
+        xalign 0.5
+
+    f "Attention, human! We are aliens from the Fifth Dimension, and we have come to enlighten you in our ways."
+
+    "Suddenly I am not in the saucer. I am watching a thread of light going up and down, up and down like a makeshift rollercoaster."
+
+    show sineFD with dissolve:
+        zoom 0.5
+        yanchor 0
+        xanchor 0
+        yalign 0
+        xalign 0
+
+    show cosFD with dissolve:
+        zoom 0.5
+        yanchor 0
+        xanchor 1.0
+        yalign 0
+        xalign 1.2
+
+    sin  "Attention, human! This is your lifeline."
+
+    "Of course. I already knew that."
+
+    sin "From your limited four-dimensional perspective, time exists and your life is full of possibilities."
+    sin "But here in the fifth dimension, you can see the thread of fate as it's truly spun."
+
+    "Everything this lovable sine wave tells me makes perfect sense. It's great! Why didn't I ever realize how great it is before?"
+
+    cos "From an inexhaustible beginning to an incomprehensible end, your butterfly-life goes up and down."
+    cos "It is only your resistance that creates suffering. Feel your purpose, and step fearlessly onwards!"
+
+    sin "Attention, human! The experience has ended. Thank you for flying with us, and please remember that we appreciate all feedback."
+    sin "Collect frequent tripper points for extra enlightenment!"  
+
+    hide sine
+    hide sineFD
+    hide cosFD 
+    jump radio2
+
+label trouble: 
+
+    "I buy the shrooms, and the dealer leaves us alone. Thank god for that."
+
+    hide dealer with moveoutright
+
+    show amy normal:
+        yanchor 0
+        xanchor 0.5
+        yalign 0
+        xalign 0.5
+
+    a "Well? You gonna try them now?"
+
+    c "No way." 
+    "This is going way too far. How am I gonna get rid of these now?"
+
+    "Maybe I can just discreetly dump them into a trash bin somewhere?"
+
+    hide amy normal with dissolve
+
+    "I realize that Amy has disappeared into the crowd. I wonder w-"
+
+    "My thinking freezes as I feel a burly hand descend on my shoulders."
+
+    show guard
+
+    g "Excuse me, sir? You're coming with me."
+
+    hide guard
 
 label radio2:
     scene radio
