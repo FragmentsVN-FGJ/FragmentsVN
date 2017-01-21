@@ -3,7 +3,7 @@
 init python:
     def amy_normal_beep(event, **kwargs):
         if event == "show":
-            renpy.music.play("amy.normal.wav", channel='sound')
+            renpy.music.play("va/Amy/amy.normal.wav", channel='sound')
         #elif event == "slow_done" or event == "end":
         #    renpy.music.stop(channel="sound")
     def amy_excited_beep(event, **kwargs):
@@ -28,13 +28,13 @@ init python:
     def beato_sad_beep(event, **kwargs):
         if event == "show":
             renpy.music.play("va/Beatrice/beatrice.sad.wav", channel='sound')
-     def beato_angry_beep(event, **kwargs):
+    def beato_angry_beep(event, **kwargs):
         if event == "show":
             renpy.music.play("va/Beatrice/beatrice.angry.wav", channel='sound')        
-     def beato_question_beep(event, **kwargs):
+    def beato_question_beep(event, **kwargs):
         if event == "show":
             renpy.music.play("va/Beatrice/beatrice.question.wav", channel='sound')
-     def beato_excited_beep(event, **kwargs):
+    def beato_excited_beep(event, **kwargs):
         if event == "show":
             renpy.music.play("va/Beatrice/beatrice.excited.wav", channel='sound')
 
@@ -161,7 +161,7 @@ label start:
 label bar:
     scene bar
     
-    play music "AmbientBGM.mp3"
+    play music "bgm/AmbientBGM.mp3"
 
     "After a hard day's work, I decide to hit the bar before going back home. Ever since the new bartender was hired a few weeks ago, I've been coming here daily. You know, it's nothing dirty or anything, she just knows how to fix a drink!"
     
