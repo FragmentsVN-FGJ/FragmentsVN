@@ -131,9 +131,9 @@ define b = Character("Beatrice", callback=beato_normal_beep)
 
 define B = Character("Beautiful woman", callback=beato_normal_beep)
 
-define bq = Character("Beatrice ???")
+define bq = Character("Beatrice ???", callback=beato_question_beep)
 
-define p = Character("Priest")
+define p = Character("Priest", callback=priest_beep)
 
 define d = Character("Dealer")
 
@@ -145,6 +145,22 @@ define sin = Character("Flying sine wave from the Fifth Dimension")
 
 define g = Character("Guard")
 
+# MY OWN CHARACTERS
+
+define b_sad = Character("Beatrice", callback=beato_sad_beep)
+
+define a_happy = Character("Amy", callback=amy_happy_beep)
+
+define a_excited = Character("Amy", callback=amy_excited_beep)
+
+define a_angry = Character("Amy", callback=amy_angry_beep)
+
+define a_sad = Character("Amy", callback=amy_sad_beep)
+
+define a_ask = Character("Amy", callback=amy_question_beep)
+
+define b_excited = Character("", callback=beato_excited_beep)
+
 # The game starts here.
 
 label start:
@@ -154,6 +170,8 @@ label start:
     # images directory to show it.
 
     scene radio
+    
+    play music "bgm/Foley - ElecNoise16.wav"
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
@@ -195,18 +213,21 @@ label bar:
     
     play music "bgm/AmbientBGM.mp3"
 
-    "After a hard day's work, I decide to hit the bar before going back home. Ever since the new bartender was hired a few weeks ago, I've been coming here daily. You know, it's nothing dirty or anything, she just knows how to fix a drink!"
+    "After a hard day's work, I decide to hit the bar before going back home. Ever since the new bartender was hired a few weeks ago, I've been coming here daily." 
+    "You know, it's nothing dirty or anything, she just knows how to fix a drink!"
     
     show amy normal2
     
-    a "How may I serve, sir?"
+    a_ask "How may I serve, sir?"
     
     "Amy asks the question with a playful smile. She's not exactly the servile type, I know that already." 
     "It's probably just a company line she's forced to say, but somehow she's managed to turn it into her own little in-joke."
 
     c "I'll take a Snow White."
 
-    a "You sure you don't want something more manly? Here, I'll make you a Jagerbomb!"
+    show amy provocative
+    
+    a_excited "You sure you don't want something more manly? Here, I'll make you a Jagerbomb!"
 
     c "Well, it is Friday, I guess. Hit me up with that."
 
@@ -215,7 +236,7 @@ label bar:
 
     "Suddenly, someone walks in and takes one of the seats at the desk. I can tell she's not one of the usual patrons."
     
-    hide amy normal2
+    hide amy provocative
     show beato normal2
     
     "She's wearing an elaborate dress that seems suitable neither for this climate nor for this bar."
@@ -233,6 +254,8 @@ label bar:
             "I glance at the name in the business card."
 
             c "Beatrice? Wow, your name sounds so refined!"
+            
+            show beato courtesy
 
             b "Thank you. Come and visit later, won't you? I really want to keep the store, but there aren't that many customers. Just a few older ladies."
 
@@ -249,7 +272,7 @@ label bar:
             hide beato sad
             show amy normal2
             
-            a "Beato is unhappy as always, huh?"
+            a_sad "Beato is unhappy as always, huh?"
 
             c "Beato?"
 
@@ -259,22 +282,30 @@ label bar:
 
             "A beautiful name for a beautiful woman, I see."
 
+            show amy gossip
+            
             a "She's got a flower store in town, but I hear it's doing pretty badly. She's kind of a loner."
 
             c "You seem to know her pretty well."
 
             "Amy rejects my hypothesis, looking a bit uncomfortable."
 
-            a "I mean, she comes here often. But I don't really get her. I would never want to spend the rest of my life alone in some shop totally off the map!"
+            show amy normal
+            
+            a_angry "I mean, she comes here often. But I don't really get her. I would never want to spend the rest of my life alone in some shop totally off the map!"
 
             "I guessed as much. She gradually grows more excited as Beatrice's influence wanes."
+            
+            show amy laugh
 
-            a "Yeah! I wanna see the world, you know, travel and get to know new people, get new experiences, that sorta stuff! Once I've got enough savings, I'll try to get a degree in journalism, or..."
+            a_excited "Yeah! I wanna see the world, you know, travel and get to know new people, get new experiences, that sorta stuff! Once I've got enough savings, I'll try to get a degree in journalism, or..."
 
             "I pretend to pay attention, but get lost in thoughts, staring at her lips."
 
 label cliff:
     scene cliff
+    
+    play music "bgm/Foley - Wind16.wav"
 
     "A pleasant breeze blows towards me as I cycle up and down the hills. The sun is about to set, but I still feel warm, perhaps due to the workout." 
     "Cycling home through the countryside has been one of the few remaining passions in my life ever since I moved to this island."
@@ -283,7 +314,10 @@ label cliff:
     "I jump over the guard rails and walk down a well-trodden path of trampled grass, arriving at the cliff."
 
     "The view is beautiful as usual. In front of me, the sky is red with the descending sun."
-    "However, this time something is different. There is an intruder in my sanctuary. "
+    "However, this time something is different. There is an intruder in my sanctuary."
+    
+    show beato back
+    
     "A woman in a flowing white dress is standing right at the edge of the cliff with her back turned towards me, gazing wistfully at the ever-rolling waves."
     "Suddenly I recognize her. It's Beatrice." 
     "What is she doing here? And how did she find her way here?"
@@ -298,16 +332,27 @@ label cliff:
             c "Beautiful view, eh?"
 
             "She is startled by my sudden whisper, and before I can react in any way, her foot slips -- "
+            
+            hide beato back
+            
+            play music "bgm/Conflict_V1.mp3"
+            
             "-- and she falls, falls, falls! I try to grasp her, but my movements are too slow."
-            "In a split second, screaming, she disappears under the black waves." 
+            b_excited "In a split second, screaming, she disappears under the black waves." 
             "And in the silent air, long after she is gone, I can still hear her scream."
 
         "Observe her passively":
 
             "Maybe it's better not to disturb her. I stay in the shadows of the trees, trying to keep quiet." 
+            
+            show beato sad
+            
             "She keeps staring at the waves, but her eyes are glazed over and empty. Just what is she thinking of...?"
 
+            hide beato sad
+            
             "Then, one moment, and she disappears into thin air--" 
+            play music "bgm/Conflict_V1.mp3"
             "That's my first impression, until I realize what has happened." 
             "I can barely catch a glimpse of her wavy hair vanishing under the cliff. One step, and she is gone." 
             "I stay there, sitting under the trees, and all I can see is that one curl of hair."
@@ -315,22 +360,31 @@ label cliff:
 label grave:
     scene grave
     
+    play music "bgm/Foley - Rain16.wav"
+    
     "I was invited to her funeral, maybe because I was the only one of the locals who had gotten close to her. "
     "Still, I feel like an outsider here, among the grieving faces of her family, all of them strangers."
 
-    "It's raining. To me, the drops seem like soft tears falling from a darkened heaven. It certainly doesn't make me feel any better."
-    "After all, I am the reason she died. It was all. My. Fault."
+    "It's raining."
+    "To me, the drops seem like soft tears falling from a darkened heaven."
+    "It certainly doesn't make me feel any better."
+    "After all, I am the reason she died." 
+    "It was all. My. Fault."
 
-    "As the priest is giving the funeral speech -- I can barely hear his voice as background noise to the welter of my thoughts" 
+    "As the priest is giving the funeral speech, I can barely hear his voice as background noise to the welter of my thoughts." 
     "My gaze flits unconsciously from attendee to attendee. And slowly, slowly I realize that my eyes have fixated on someone."
-    "I'm looking at someone from behind. It's a woman wearing a flowing white dress."
+    "I'm looking at someone from behind." 
+    show beato back
+    "It's a woman wearing a flowing white dress."
     "Perhaps that is what caught my attention, everyone else is wearing something suitably depressed."
     "But no, I'm looking at her long, curly hair." 
     "There's a faint voice within me, trying to tell me something, but at first I'm too lost in depression to hear."
 
     menu:
         "You know her":
-            "Wait. I know her. It can't be!" 
+            "Wait."
+            play music "bgm/Action_V1.mp3"
+            "I know her. It can't be!" 
             "Explanations race through my mind: a twin sister, mother, it was all a nightmare, this is all a nightmare, clones, aliens..."
             "Beatrice!"
 
@@ -342,6 +396,8 @@ label grave:
             "And as I see her face, as I look into those cerulean eyes, wide with surprise or with terror, my suspicions are confirmed. It *is* her!"
 
             c "Beatrice! How can you be alive? I saw you, I saw you fall..."
+            
+            show beato confused
 
             bq "... Do I know you, sir?"
 
@@ -352,6 +408,10 @@ label grave:
             "The priest is slowly trying to continue his speech, unsure of what to do."
 
             "If Beatrice is here, at her own funeral, then who is in the coffin?"
+            
+            hide beato confused
+            
+            play music "bgm/Foley - Rain16.wav"
 
             "I walk over to the coffin. Nobody stops me."
 
@@ -361,30 +421,39 @@ label grave:
 
             "Beatrice slowly walks behind me, and whispers in my ear."
 
-            b "This is not my funeral. It's yours."
+            b_sad "This is not my funeral. It's yours."
 
         "Just keep watching...":
+        
+            play music "bgm/Foley - Rain16.wav"
 
             "It's better not to cause a ruckus. I keep my gaze fixed on the strange apparition before me." 
             "I'm beginning to doubt my sanity. It cannot be her. This is her funeral!"
 
-            "But then, for just a moment, she turns her head so I can see those cerulean eyes. And then I am certain. It is her."
+            show beato turn
+            "But then, for just a moment, she turns her head so I can see those cerulean eyes."
+            "And then I am certain. It is her."
 
             "All my sorrow has vanished, replaced by total confusion." 
             "It is as if the world around me was collapsing around me, crushing me under my crumbling sense of reality. What is going on?"
 
-            "I sit and stare, unable to do anything but. The priest's words envelope me subconsciously, even though I can't pay attention to them anymore."
+            "I sit and stare, unable to do anything but."
+            hide beato turn
+            show priest
+            "The priest's words envelope me subconsciously, even though I can't pay attention to them anymore."
             "But suddenly, something he says piques my interest. It takes me a while to realize what he said." 
             "My name."
 
             p "Though he had only recently moved here, he was liked by all..."
 
             "The realization slowly dawns on me."
-            " This is not Beatrice's funeral."
-            " It is mine."
+            "This is not Beatrice's funeral."
+            "It is mine."
 
 label beach:
     scene beach
+    
+    play music "bgm/Foley - Beach16.wav"
     
     "Woohoo! I shift my weight forward, causing the board to swerve left. "
     "The sun is really hot today, but I've been falling into the water all day, so it's bearable. Splash! There I go again." 
@@ -396,30 +465,45 @@ label beach:
     "Amy paddles closer to me on her board, laughing at my misery as usual. Come on girl, don't be so mean!"
     "I can't stay angry at that figure, though! Especially not with that bikini..."
 
-    a "Hahaha, you fell again!? Hope it didn't hurt!"
+    show amy laugh
+    
+    a_happy "Hahaha, you fell again!? Hope it didn't hurt!"
 
     c "Eh, I can handle it."
 
     "Why am I pretending to be so macho, anyway?"
 
-    a "Wanna try something harder? I can teach you my super-secret board jump move! It's really cool!"
+    show amy provocative
+    
+    a_ask "Wanna try something harder? I can teach you my super-secret board jump move! It's really cool!"
 
     c "Erm, I don't know if I'm ready, oh master..."
 
     "Still, a strange sense of bravery is starting to well up within me. I do kinda want to try something harder already."
 
+    play music "bgm/Action_V1.mp3"
+    
     menu:
         "Do the super-secret board jump move":
+            hide amy
             "The idea makes my heart pump, but all my fears are being drowned by crazy courage. I'll show her!"
 
             "She guides me deeper into the ocean, into an area with colossal, periodic waves."
+            
+            show amy laugh
 
-            a "Okay, just wait for a reaaallly big one! Here it comes!"
+            a_excited "Okay, just wait for a reaaallly big one! Here it comes!"
+            
+            hide amy laugh
 
             "As the wave comes, I go through the usual motions: first on my knees, then..." 
             "Stand! It feels difficult, but somehow, I manage to surf the wave."
+            
+            show amy laugh
 
-            a "Just remember my instructions! Now!"
+            a_excited "Just remember my instructions! Now!"
+            
+            hide amy laugh
 
             "With a shift of weight, I flip the board under me and jump into the air! I'm doing it!" 
             "I'm, uh, falling into the water as usual." 
@@ -433,17 +517,26 @@ label beach:
 
 
         "Maybe I'll just practice a bit closer to the shore":
+        
+            play music "bgm/Foley - Beach16.wav"
 
             "Common sense overcomes me. No way I'm ready for that."
+            
+            show amy disappoint
 
-            a "Oh, you're no fun!"
+            a_sad "Oh, you're no fun!"
 
             "Amy's disappointment makes me blush and reconsider, but to be perfectly honest, I'm kinda terrified of those waves."
+            
+            hide amy disappoint
+            
             "Amy paddles back into the deeps, ready to surf again."
 
             "Well, I guess there's nothing to do but practice. I relax for a while in the waters nearer to the shore." 
             "The sand and rocks caress the soles of my feet. It feels quite pleasant, up until I feel a strange sting." 
             "As I direct my gaze downwards, the first thing I see is this beautiful, red haze floating in the water."
+            
+            play music "bgm/Conflict_V1.mp3"
 
             "It's my blood."
 
@@ -456,6 +549,8 @@ label beach:
 
 label concert:
     scene concert
+    
+    play music "bgm/Action_V1.mp3"
 
     "To be honest, the band is not too inspiring, but you can't expect the best of the best at a faraway place like this." 
     "At least the music is passable."
@@ -604,6 +699,8 @@ label trouble:
 
 label radio2:
     scene radio
+    
+    play music "bgm/Foley - ElecNoise16.wav"
 
     "Just a normal day at the radio station. I stare at the hands of the clock on the wall, tapping a pen on my desk. Half an hour to go."
     "I glance at the calendar. April 25th. I'm going to a concert with Amy this evening." 
