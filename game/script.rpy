@@ -6,18 +6,88 @@ init python:
             renpy.music.play("amy.normal.wav", channel='sound')
         #elif event == "slow_done" or event == "end":
         #    renpy.music.stop(channel="sound")
+    def amy_excited_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.excited.wav", channel='sound')
+    def amy_happy_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.happy.wav", channel='sound')
+    def amy_question_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.question.wav", channel='sound')
+    def amy_angry_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.angry.wav", channel='sound')
+    def amy_sad_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.sad.wav", channel='sound')        
+
     def beato_normal_beep(event, **kwargs):
         if event == "show":
             renpy.music.play("va/Beatrice/beatrice.normal.wav", channel='sound')
+    def beato_sad_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.sad.wav", channel='sound')
+     def beato_angry_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.angry.wav", channel='sound')        
+     def beato_question_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.question.wav", channel='sound')
+     def beato_excited_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.excited.wav", channel='sound')
+
+    def male1_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Other/male1.wav", channel='sound')
+    def male2_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Other/male2.wav", channel='sound')
+    def priest_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Other/priest.wav", channel='sound')
+    def alien_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Other/alien.wav", channel='sound')
+                    
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
 image amy normal2 = "sprites/amy_normal_2.png"
 
+image amy normal = "sprites/amy_normal.png"
+
+image amy gossip = "sprites/amy gossip.png"
+
+image amy disappoint = "sprites/amy_disappoint.png"
+
+image amy laugh = "sprites/amy_laugh.png"
+
+image amy provocative = "sprites/amy_provocative.png"
+
+
 image beato normal2 = "sprites/beato_normal_2.png"
 
 image beato sad = "sprites/beato_sad_2.png"
+
+image beato back = "sprites/beato_back_2.png"
+
+image beato courtesy = "sprites/beato_courtesy_2.png"
+
+image beato confused = "sprites/beato_confused_2.png"
+
+image beato turn = "sprites/beato_turning_2.png"
+
+
+image guard = "sprites/guard.png"
+
+image dealer = "sprites/dealer.png"
+
+image priest = "sprites/priest.png"
+
+
 
 define c = Character("Chris")
 
