@@ -1,17 +1,103 @@
 # The script of the game goes in this file.
 
+init python:
+    def amy_normal_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("amy.normal.wav", channel='sound')
+        #elif event == "slow_done" or event == "end":
+        #    renpy.music.stop(channel="sound")
+    def amy_excited_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.excited.wav", channel='sound')
+    def amy_happy_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.happy.wav", channel='sound')
+    def amy_question_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.question.wav", channel='sound')
+    def amy_angry_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.angry.wav", channel='sound')
+    def amy_sad_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Amy/amy.sad.wav", channel='sound')        
+
+    def beato_normal_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.normal.wav", channel='sound')
+    def beato_sad_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.sad.wav", channel='sound')
+     def beato_angry_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.angry.wav", channel='sound')        
+     def beato_question_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.question.wav", channel='sound')
+     def beato_excited_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Beatrice/beatrice.excited.wav", channel='sound')
+
+    def male1_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Other/male1.wav", channel='sound')
+    def male2_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Other/male2.wav", channel='sound')
+    def priest_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Other/priest.wav", channel='sound')
+    def alien_beep(event, **kwargs):
+        if event == "show":
+            renpy.music.play("va/Other/alien.wav", channel='sound')
+                    
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
+
+image amy normal2 = "sprites/amy_normal_2.png"
+
+image amy normal = "sprites/amy_normal.png"
+
+image amy gossip = "sprites/amy gossip.png"
+
+image amy disappoint = "sprites/amy_disappoint.png"
+
+image amy laugh = "sprites/amy_laugh.png"
+
+image amy provocative = "sprites/amy_provocative.png"
+
+
+image beato normal2 = "sprites/beato_normal_2.png"
+
+image beato sad = "sprites/beato_sad_2.png"
+
+image beato back = "sprites/beato_back_2.png"
+
+image beato courtesy = "sprites/beato_courtesy_2.png"
+
+image beato confused = "sprites/beato_confused_2.png"
+
+image beato turn = "sprites/beato_turning_2.png"
+
+
+image guard = "sprites/guard.png"
+
+image dealer = "sprites/dealer.png"
+
+image priest = "sprites/priest.png"
+
+
 
 define c = Character("Chris")
 
 define o = Character("Old man")
 
-define a = Character("Amy")
+define a = Character("Amy", callback=amy_normal_beep)
 
-define b = Character("Beatrice")
+define b = Character("Beatrice", callback=beato_normal_beep)
 
-define B = Character("Beautiful woman")
+define B = Character("Beautiful woman", callback=beato_normal_beep)
 
 define bq = Character("Beatrice ???")
 
@@ -74,12 +160,17 @@ label start:
 
 label bar:
     scene bar
+    
+    play music "AmbientBGM.mp3"
 
     "After a hard day's work, I decide to hit the bar before going back home. Ever since the new bartender was hired a few weeks ago, I've been coming here daily. You know, it's nothing dirty or anything, she just knows how to fix a drink!"
     
+    show amy normal2
+    
     a "How may I serve, sir?"
     
-    "Amy asks the question with a playful smile. She's not exactly the servile type, I know that already. It's probably just a company lineshe's forced to say, but somehow she's managed to turn it into her own little in-joke."
+    "Amy asks the question with a playful smile. She's not exactly the servile type, I know that already." 
+    "It's probably just a company line she's forced to say, but somehow she's managed to turn it into her own little in-joke."
 
     c "I'll take a Snow White."
 
@@ -90,9 +181,13 @@ label bar:
     "Amy's pretty young, in her early twenties, I think. With her looks and positive attitude, it's no surprise she got hired." 
     "Still, she seems like the type of girl who wants to do something with her life. You know, instead of toiling her life away at some random bar in a small seaside village."
 
-    "Suddenly, someone walks in and takes one of the seats at the desk. I can tell she's not one of the usual patrons." 
+    "Suddenly, someone walks in and takes one of the seats at the desk. I can tell she's not one of the usual patrons."
+    
+    hide amy normal2
+    show beato normal2
+    
     "She's wearing an elaborate dress that seems suitable neither for this climate nor for this bar."
-    " But damn is she beautiful. She has a long curly hair, and the scent of flowers hangs around her."
+    "But damn is she beautiful. She has a long curly hair, and the scent of flowers hangs around her."
 
     menu:
         "Welcome the newcomer":
@@ -115,8 +210,13 @@ label bar:
 
         "Better not disturb her":
 
+            show beato sad
+
             "The woman orders a Snow White, not really talking to anyone. There's an aura of contemplative sadness around her, and it seems to push away any potential suitors. She finishes her drink and leaves."
 
+            hide beato sad
+            show amy normal2
+            
             a "Beato is unhappy as always, huh?"
 
             c "Beato?"
@@ -151,9 +251,9 @@ label cliff:
     "I jump over the guard rails and walk down a well-trodden path of trampled grass, arriving at the cliff."
 
     "The view is beautiful as usual. In front of me, the sky is red with the descending sun."
-    " However, this time something is different. There is an intruder in my sanctuary. "
-    " A woman in a flowing white dress is standing right at the edge of the cliff with her back turned towards me, gazing wistfully at the ever-rolling waves."
-    " Suddenly I recognize her. It's Beatrice." 
+    "However, this time something is different. There is an intruder in my sanctuary. "
+    "A woman in a flowing white dress is standing right at the edge of the cliff with her back turned towards me, gazing wistfully at the ever-rolling waves."
+    "Suddenly I recognize her. It's Beatrice." 
     "What is she doing here? And how did she find her way here?"
 
     menu:
