@@ -656,7 +656,7 @@ label concert:
     d "Look, you gonna choose now? I don't got all day."
 
     "Looking at this shady dealer, I get the feeling I'm going to be beaten to death by some gang if I don't comply."
-    "And it's not like I want to get embarassed in front of Amy, either."
+    "And it's not like I want to get embarrassed in front of Amy, either."
 
     "Here goes nothing."
 
