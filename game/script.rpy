@@ -151,15 +151,15 @@ define bq = Character("Beatrice ???", callback=beato_question_beep)
 
 define p = Character("Priest", callback=priest_beep)
 
-define d = Character("Dealer")
+define d = Character("Dealer", callback=male1_beep)
 
 define f = Character("Flying sine wave")
 
-define cos = Character("Flying cosine wave from the Fifth Dimension")
+define cos = Character("Flying cosine wave from the Fifth Dimension", callback=alien_beep)
 
 define sin = Character("Flying sine wave from the Fifth Dimension")
 
-define g = Character("Guard")
+define g = Character("Guard", callback=male2_beep)
 
 # MY OWN CHARACTERS
 
@@ -190,7 +190,6 @@ init:
     image fraghelp = Text("{size=40}Your objective is to collect parts of two different melodies called fragments. Complete a pure melody to unlock a good ending.", text_align=0.5)
 
 # The game starts here.
-
 
 label start:
 
@@ -225,22 +224,22 @@ label start:
 
     c "How much time left?"
 
-    "The balding man before me is speed-reading the paper containing his lines."
+    "The balding man before me is speed-reading the paper containing my lines."
 
-    o"Fifteen seconds."
+    o "Fifteen seconds."
 
-    c "Aah, damnit! I'm getting too old for this."
+    c "Aah, dammit! I'm getting too old for this."
 
     o "Three... two... one... go!"
 
-    c "Good morning, listeners! It's 8.00 am, April 26th, and according to the weather report it's going to be sunny with a pleasant breeze. Get those surfing boards ready! "
+    c "Good morning, listeners! It's 8.00 am, April 26th, and according to the weather report it's going to be sunny with a pleasant breeze. Get those surfboards ready!"
     "Before we get to the daily selection, it's time for some local news..."
     "I watch the statistics on the array of screens in front of me. It's my job to make everything run smoothly, not that anyone can see that."
     "You only know the value of something once it's gone, I guess."
 
     "Well, this is still an improvement on my last job."
 
-    "A rather boring day of looking at music lists and carrying errands culminates at 4pm, when I'm solemnly released from duty."
+    "A rather boring day of looking at music lists and advertising sun lotion culminates at 4pm, when I'm solemnly released from duty."
 
     "Finally. Thank god it's Friday."
     
@@ -260,7 +259,7 @@ label intro:
 label bar:
     scene bar with dissolve
 
-    play music "bgm/AmbientBGM.mp3"
+    play music "<loop 4.835>bgm/songFull.wav"
 
     "After a hard day's work, I decide to hit the bar before going back home. Ever since the new bartender was hired a few weeks ago, I've been coming here daily."
     "You know, it's nothing dirty or anything, she just knows how to fix a drink!"
@@ -398,7 +397,7 @@ label cliff:
 
             hide beato back with moveoutbottom
 
-            play music "bgm/Conflict_V1.mp3"
+            play music "bgm/Conflict_V1.wav"
 
             "-- and she falls, falls, falls! I try to grasp her, but my movements are too slow."
             b_excited "In a split second, screaming, she disappears under the black waves."
@@ -419,7 +418,7 @@ label cliff:
             hide beato sad
 
             "Then, one moment, and she disappears into thin air--"
-            play music "bgm/Conflict_V1.mp3"
+            play music "bgm/Conflict_V1.wav"
             "That's my first impression, until I realize what has happened."
             "I can barely catch a glimpse of her wavy hair vanishing under the cliff. One step, and she is gone."
             "I stay there, sitting under the trees, and all I can see is that one curl of hair."
@@ -450,7 +449,7 @@ label grave:
     menu:
         "You know her":
             "Wait."
-            play music "bgm/Action_V1.mp3"
+            play music "bgm/Action_V1.wav"
             "I know her. It can't be!"
             "Explanations race through my mind: a twin sister, mother, it was all a nightmare, this is all a nightmare, clones, aliens..."
             "Beatrice!"
@@ -532,8 +531,9 @@ label beach:
 
     play music "bgm/Foley - Beach16.wav"
 
-    "Woohoo! I shift my weight forward, causing the board to swerve left. "
-    "The sun is really hot today, but I've been falling into the water all day, so it's bearable. Splash! There I go again."
+    "Woohoo! I shift my weight backward and rotate my body, causing the board to swerve left."
+    "The sun is really hot today, but I've been falling into the water all day, so it's bearable."
+    "Splash! There I go again."
     "Speaking of hot, I can see Amy surfing some really big waves in the distance."
     "Unlike me, she hasn't fallen once the entire day. Her style is breathtaking."
 
@@ -558,7 +558,7 @@ label beach:
 
     "Still, a strange sense of bravery is starting to well up within me. I do kinda want to try something harder already."
 
-    play music "bgm/Action_V1.mp3"
+    play music "bgm/Action_V1.wav"
 
     menu:
         "Do the super-secret board jump move":
@@ -626,7 +626,7 @@ label beach:
             "The sand and rocks caress the soles of my feet. It feels quite pleasant, up until I feel a strange sting."
             "As I direct my gaze downwards, the first thing I see is this beautiful, red haze floating in the water."
 
-            play music "bgm/Conflict_V1.mp3"
+            play music "bgm/Conflict_V1.wav"
 
             "It's my blood."
 
@@ -644,7 +644,7 @@ label beach:
 label concert:
     scene concert with dissolve
 
-    play music "bgm/Action_V1.mp3"
+    play music "bgm/PsychedelicSound.wav"
 
     "To be honest, the band is not too inspiring, but you can't expect the best of the best at a faraway place like this."
     "At least the music is passable."
@@ -827,7 +827,7 @@ label radio2:
 
 label ending:
 
-    play music "bgm/AmbientBGM.mp3"
+    play music "<loop 4.835>bgm/songFull.wav"
 
     scene bar with dissolve
 
@@ -871,7 +871,7 @@ label ending:
 
     "In a flash, I lose all sense of my surroundings."
 
-    play music "bgm/Conflict_V1.mp3"
+    play music "bgm/Conflict_V1.wav"
 
     scene cliff with dissolve
 
@@ -915,6 +915,8 @@ label ending:
     #Play Melody.
 
     play music fragment_queue noloop
+    
+    pause 2.0
 
     show beato normal2
 
