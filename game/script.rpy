@@ -134,6 +134,9 @@ image sine:
     pause 0.1
     repeat
 
+image moray = "cgs/moray.png"
+image drown = "cgs/watery.png"
+    
 define c = Character("Chris")
 
 define o = Character("Old man")
@@ -173,6 +176,8 @@ define a_sad = Character("Amy", callback=amy_sad_beep)
 define a_ask = Character("Amy", callback=amy_question_beep)
 
 define b_excited = Character("", callback=beato_excited_beep)
+
+define b_angry = Character("Beatrice", callback=beato_angry_beep)
 
 
 init:
@@ -782,7 +787,7 @@ label radio2:
 
 
     # plays the fragments
-    play music fragment_queue
+    #play music fragment_queue
 
     # something changes based on the points?
     #if a_points >= 5:
@@ -800,6 +805,197 @@ label radio2:
         #choice variable names:
         # bar_choice cliff_choice graveyard_choice beach_choice concert_choice
     # This ends the game.
+    
+    
+label ending:
+
+    play music "bgm/AmbientBGM.mp3"
+
+    scene bar
+
+    "I go to pick up Amy at the bar. Her shift's just about to end."
+
+    show amy normal2
+    
+    a_happy "How may I serve, sir?"
+
+    "Amy asks the question with a playful smile." 
+    "It's probably just a company line that she's forced to say, but somehow she's managed to turn it into an in-joke."
+
+    c "Are you seriously going to the concert in those clothes?"
+
+    a_ask "Huh? Concert?"
+
+    "The fact that she's forgotten is kind of frustrating."
+
+    c "The one on the 25th. That's today, right?"
+
+    "Amy's smile shifts between amusement and confusion."
+
+    a "Uh, that was yesterday."
+    if concert_choice:
+        a_ask "Man, the shrooms really got to you, didn't they?"
+    else:
+        a_happy "Did you try the shrooms after all? Sorry I ditched you with the security guard there!"
+
+    "Now that you mention it, I do remember that. I feel a bit of vertigo."
+
+    if concert_choice:
+        "Really shouldn't have tried those shrooms."
+    else:
+        "But I'm sure I didn't use anything. What's going on?"
+
+    hide amy
+    show beato normal2
+    
+    "Suddenly, someone walks in and takes one of the seats at the desk."
+    "I can tell she's not one of the usual patrons. She's wearing an elaborate dress that seems suitable neither for this climate nor for this bar."
+
+    "In a flash, I lose all sense of my surroundings."
+    
+    play music "bgm/Conflict_V1.mp3"
+    
+    scene cliff
+
+    if cliff_choice:
+        b_excited "She's screaming, falling under the waves."
+    else:
+        "All I can see is one curl of hair, disappearing beneath the cliff."
+
+    "She's dead. I was at her funeral."
+
+    scene grave
+    
+    if graveyard_choice:
+        b_sad "This is not my funeral. It is yours."
+    else:
+        p "Though he had only recently moved here, he was liked by all..."
+
+    scene bar
+    
+    "I'm... dead? But I'm standing right here!"
+
+    if not beach_choice:
+        "My heart is beating, blood is flowing in my veins!"
+        scene moray
+        "I'm really starting to lose a lot of blood here..."
+    else:
+        "I'm still breathing!"
+        scene drown
+        "Gasp! I can't... air..."
+
+    scene black
+    
+    stop music
+    
+    "I'm floating in a sea of blackness. There's a small bubble of pulsating light in front of me."
+
+    show beato sad
+
+    "It's Beatrice. She is sitting at a harpsichord, playing a tune with her nimble fingers."
+
+    #Play Melody.
+    
+    play music fragment_queue noloop
+    
+    show beato normal2
+
+    "Beatrice rises and addresses me, her cerulean eyes looking deeply into mine."
+
+    b_angry "How many times have you died already?"
+
+    "Her voice remains courteous, but there's a hint of... anger?"
+
+    bq "Do you know who I am?"
+
+    "She sounds almost despairing."
+
+    bq "What my surname is?"
+
+    if bar_choice:
+        "No..."
+
+        "I feel something in my pocket. A card."
+
+        "Her business card."
+
+        "I look at her name."
+
+        "How did I never notice this before?"
+
+        "Her surname is the same as mine!"
+
+    else:
+        c "Sorry."
+
+    if a_points >= 5:
+        #AMY ENDING:
+        
+        play music fragment_queue loop
+        
+        "Beatrice looks at me sorrowfully."
+
+        b "The melody is complete. You have forgotten me, and it is for the better."
+
+        b "Leave this island with Amy before May, and fate shall spare you both."
+
+        "She starts drifting away, the blackness vanishing around me."
+    
+        show beato sad
+
+        b_sad "Goodbye, my..."
+
+        scene bar
+    
+        "I am at the bar."
+
+        a_excited "Chris? Are you all right!?"
+
+    elif b_points >= 5:
+        #BEATRICE ENDING:
+
+        play music fragment_queue loop
+        
+        "As I say her full name, Beatrice's face lightens."
+
+        b "You remember."
+
+        b "The melody is complete. Your memories have returned from the haze of time."
+
+        "The blackness vanishes."
+
+        "I am at Beatrice's flower shop. She is smiling."
+
+        "Hers is the most beautiful smile in the world."
+    
+        show beato sad
+
+        "She hugs me, and cries."
+
+        b_sad "You're alive..."
+
+    else:
+        #NORMAL ENDING:
+
+        "Beatrice's voice drips with resentment."
+
+        b_angry "The melody is incomplete. And yet again you and I must return to the has-already-been."
+
+        "Did I fail her somehow?"
+
+        "The blackness vanishes around me." 
+    
+        scene radio
+        
+        play music "bgm/Foley - ElecNoise16.wav"
+    
+        "I'm sitting at my desk at the radio station."
+
+        "I moved here recently. It's my first day at work."
+
+        "I'm really liking this subtropical climate."
+
+        "I can't believe it's January and still so warm!"
 
     #Jump to the credits
     call credits
