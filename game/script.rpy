@@ -1,7 +1,7 @@
 # The script of the game goes in this file.
 
 init python:
-    
+
     #Credits
     credits = ('Story', 'Full team'), ('Script', 'Jami Valorinta'), ('Music/SFX', 'Mikael Korpela'), ('Music/SFX', 'Ricardo Falcon Perez'), ('Music/SFX', 'Zhicun Xu'), ('Sprites and CG', 'Roope Herpiö'), ('Background images', 'Snehadri Sinha'), ('Background images', 'All images are under Creative Commons'), ('Programming', 'Jami Valorinta'), ('Programming', 'Mikael Korpela'), ('Programming', 'Roope Herpiö'), ('Programming', 'Snehadri Sinha')
     credits_s = "{size=80}Credits\n\n"
@@ -68,37 +68,37 @@ init python:
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-image amy normal2 = "sprites/amy_normal_2.png"
+image amy normal2 = "lr/amy_normal_2.png"
 
-image amy normal = "sprites/amy_normal.png"
+image amy normal = "lr/amy_normal.png"
 
-image amy gossip = "sprites/amy gossip.png"
+image amy gossip = "lr/amy_gossip.png"
 
-image amy disappoint = "sprites/amy_disappoint.png"
+image amy disappoint = "lr/amy_disappoint.png"
 
-image amy laugh = "sprites/amy_laugh.png"
+image amy laugh = "lr/amy_laugh.png"
 
-image amy provocative = "sprites/amy_provocative.png"
-
-
-image beato normal2 = "sprites/beato_normal_2.png"
-
-image beato sad = "sprites/beato_sad_2.png"
-
-image beato back = "sprites/beato_back_2.png"
-
-image beato courtesy = "sprites/beato_courtesy_2.png"
-
-image beato confused = "sprites/beato_confused_2.png"
-
-image beato turn = "sprites/beato_turning_2.png"
+image amy provocative = "lr/amy_provocative.png"
 
 
-image guard = "sprites/guard.png"
+image beato normal2 = "lr/beato_normal.png"
 
-image dealer = "sprites/dealer.png"
+image beato sad = "lr/beato_sad.png"
 
-image priest = "sprites/priest.png"
+image beato back = "lr/beato_back.png"
+
+image beato courtesy = "lr/beato_courtesy.png"
+
+image beato confused = "lr/beato_confused.png"
+
+image beato turn = "lr/beato_turning.png"
+
+
+image guard = "lr/guard.png"
+
+image dealer = "lr/dealer.png"
+
+image priest = "lr/priest.png"
 
 
 image sineFD:
@@ -136,7 +136,7 @@ image sine:
 
 image moray = "cgs/moray.png"
 image drown = "cgs/watery.png"
-    
+
 define c = Character("Chris")
 
 define o = Character("Old man")
@@ -379,7 +379,7 @@ label cliff:
 
             "She is startled by my sudden whisper, and before I can react in any way, her foot slips -- "
 
-            hide beato back
+            hide beato back with moveoutbottom
 
             play music "bgm/Conflict_V1.mp3"
 
@@ -638,19 +638,10 @@ label concert:
 
     a "I have to see that it's safe first, right?"
 
-    show amy normal:
-        zoom 0.7
-        yanchor 0.5
-        xanchor 0.5
-        yalign 0.5
-        xalign 0.2
+    show amy normal at left
 
-    show dealer with moveinright:
-        zoom 0.7
-        yanchor 0
-        xanchor 0.5
-        yalign 0
-        xalign 0.8
+    show dealer at right
+    with moveinright
 
     d "Look, you gonna choose now? I don't got all day."
 
@@ -805,8 +796,8 @@ label radio2:
         #choice variable names:
         # bar_choice cliff_choice graveyard_choice beach_choice concert_choice
     # This ends the game.
-    
-    
+
+
 label ending:
 
     play music "bgm/AmbientBGM.mp3"
@@ -816,10 +807,10 @@ label ending:
     "I go to pick up Amy at the bar. Her shift's just about to end."
 
     show amy normal2
-    
+
     a_happy "How may I serve, sir?"
 
-    "Amy asks the question with a playful smile." 
+    "Amy asks the question with a playful smile."
     "It's probably just a company line that she's forced to say, but somehow she's managed to turn it into an in-joke."
 
     c "Are you seriously going to the concert in those clothes?"
@@ -847,14 +838,14 @@ label ending:
 
     hide amy
     show beato normal2
-    
+
     "Suddenly, someone walks in and takes one of the seats at the desk."
     "I can tell she's not one of the usual patrons. She's wearing an elaborate dress that seems suitable neither for this climate nor for this bar."
 
     "In a flash, I lose all sense of my surroundings."
-    
+
     play music "bgm/Conflict_V1.mp3"
-    
+
     scene cliff
 
     if cliff_choice:
@@ -865,14 +856,14 @@ label ending:
     "She's dead. I was at her funeral."
 
     scene grave
-    
+
     if graveyard_choice:
         b_sad "This is not my funeral. It is yours."
     else:
         p "Though he had only recently moved here, he was liked by all..."
 
     scene bar
-    
+
     "I'm... dead? But I'm standing right here!"
 
     if not beach_choice:
@@ -885,9 +876,9 @@ label ending:
         "Gasp! I can't... air..."
 
     scene black
-    
+
     stop music
-    
+
     "I'm floating in a sea of blackness. There's a small bubble of pulsating light in front of me."
 
     show beato sad
@@ -895,9 +886,9 @@ label ending:
     "It's Beatrice. She is sitting at a harpsichord, playing a tune with her nimble fingers."
 
     #Play Melody.
-    
+
     play music fragment_queue noloop
-    
+
     show beato normal2
 
     "Beatrice rises and addresses me, her cerulean eyes looking deeply into mine."
@@ -930,9 +921,9 @@ label ending:
 
     if a_points >= 5:
         #AMY ENDING:
-        
+
         play music fragment_queue loop
-        
+
         "Beatrice looks at me sorrowfully."
 
         b "The melody is complete. You have forgotten me, and it is for the better."
@@ -940,13 +931,13 @@ label ending:
         b "Leave this island with Amy before May, and fate shall spare you both."
 
         "She starts drifting away, the blackness vanishing around me."
-    
+
         show beato sad
 
         b_sad "Goodbye, my..."
 
         scene bar
-    
+
         "I am at the bar."
 
         a_excited "Chris? Are you all right!?"
@@ -955,7 +946,7 @@ label ending:
         #BEATRICE ENDING:
 
         play music fragment_queue loop
-        
+
         "As I say her full name, Beatrice's face lightens."
 
         b "You remember."
@@ -967,7 +958,7 @@ label ending:
         "I am at Beatrice's flower shop. She is smiling."
 
         "Hers is the most beautiful smile in the world."
-    
+
         show beato sad
 
         "She hugs me, and cries."
@@ -983,12 +974,12 @@ label ending:
 
         "Did I fail her somehow?"
 
-        "The blackness vanishes around me." 
-    
+        "The blackness vanishes around me."
+
         scene radio
-        
+
         play music "bgm/Foley - ElecNoise16.wav"
-    
+
         "I'm sitting at my desk at the radio station."
 
         "I moved here recently. It's my first day at work."
