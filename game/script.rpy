@@ -574,9 +574,13 @@ label beach:
 
             "Except the waves are really huge out here. I'm starting to wonder if this was the brightest idea."
 
+            scene drown
+
             "Gulp. Gasp! I can't... air..."
 
             "The sounds of the gushing waves and Amy's shouting seem to be coming from somewhere far away as I keep sinking beneath."
+
+            pause 1.0
 
 
         "Maybe I'll just practice a bit closer to the shore":
@@ -607,15 +611,19 @@ label beach:
 
             "It's my blood."
 
+            scene moray
+
             "I panic as I look at the thing that has sunk it's teeth into my foot. A snake?... No, a moray!"
             "I try to shake it off, but that just makes the pain worse. It's not letting go!"
 
             "I'm really starting to lose a lot of blood here. I desperately make my way towards the shore, but everything is getting darker around me."
             "I fall face down into the water..."
 
+            pause 1.0
+
 
 label concert:
-    scene concert
+    scene concert with dissolve
 
     play music "bgm/Action_V1.mp3"
 
