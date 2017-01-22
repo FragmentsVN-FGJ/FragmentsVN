@@ -187,9 +187,10 @@ init:
     image theend = Text("{size=80}The End", text_align=0.5)
     image frag = Text("{size=80}Fragments", text_align=0.5)
     image thanks = Text("{size=40}Thanks to Samuli Pentti for the concert background image", text_align=0.5)
-
+    image fraghelp = Text("{size=40}Your objective is to collect parts of two different melodies called fragments. Complete a pure melody to unlock a good ending.", text_align=0.5)
 
 # The game starts here.
+
 
 label start:
 
@@ -201,7 +202,10 @@ label start:
     $ a_points = 0
     $ b_points = 0
 
-    scene radio
+    scene black with dissolve
+    call intro
+
+    scene radio with dissolve
 
     play music "bgm/Foley - ElecNoise16.wav"
 
@@ -239,6 +243,19 @@ label start:
     "A rather boring day of looking at music lists and carrying errands culminates at 4pm, when I'm solemnly released from duty."
 
     "Finally. Thank god it's Friday."
+    
+    jump bar
+
+#called into start scene
+label intro:
+    show fraghelp:
+        yanchor 0.5 ypos 0.5
+        xanchor 0.5 xpos 0.5
+    with dissolve
+    with Pause(3.0)
+    hide fraghelp with dissolve
+    return
+
 
 label bar:
     scene bar with dissolve
