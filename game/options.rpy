@@ -169,8 +169,7 @@ init python:
     ## **.ogg" matches ogg files in the game directory or any of its
     ## subdirectories, and "**.psd" matches psd files anywhere in the project.
 
-    renpy.music.register_channel("musicone", mixer="music", loop=True, stop_on_mute=True, tight=False, file_prefix='', file_suffix='', buffer_queue=True)
-    renpy.music.register_channel("misictwo", mixer="music", loop=True, stop_on_mute=True, tight=False, file_prefix='', file_suffix='', buffer_queue=True)
+    renpy.music.register_channel("music_noloop", mixer="music", loop=False, stop_on_mute=True, tight=False, file_prefix='', file_suffix='', buffer_queue=True)
 
     ## Classify files as None to exclude them from the built distributions.
 
