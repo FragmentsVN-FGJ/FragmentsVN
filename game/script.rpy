@@ -1,6 +1,19 @@
 # The script of the game goes in this file.
 
 init python:
+    
+    #Credits
+    credits = ('Story', 'Full team'), ('Script', 'Jami Valorinta'), ('Music/SFX', 'Mikael Korpela'), ('Music/SFX', 'Ricardo Falcon Perez'), ('Music/SFX', 'Zhicun Xu'), ('Sprites and CG', 'Roope Herpiö'), ('Background images', 'Snehadri Sinha'), ('Background images', 'All images are under Creative Commons'), ('Programming', 'Jami Valorinta'), ('Programming', 'Mikael Korpela'), ('Programming', 'Roope Herpiö'), ('Programming', 'Snehadri Sinha')
+    credits_s = "{size=80}Credits\n\n"
+    e1 = ''
+    for e in credits:
+        if not e1==e[0]:
+            credits_s += "\n{size=40}" + e[0] + "\n"
+        credits_s += "{size=60}" + e[1] + "\n"
+        e1=e[0]
+    credits_s += "\n{size=40}Engine\n{size=60}Ren'py\n6.99.12.2"
+
+
     def amy_normal_beep(event, **kwargs):
         if event == "show":
             renpy.music.play("va/Amy/amy.normal.wav", channel='sound')
@@ -160,6 +173,16 @@ define a_sad = Character("Amy", callback=amy_sad_beep)
 define a_ask = Character("Amy", callback=amy_question_beep)
 
 define b_excited = Character("", callback=beato_excited_beep)
+
+
+init:
+    # image cred = Text(credits_s, font="myfont.ttf", text_align=0.5) #use this if you want to use special fonts
+    image cred = Text(credits_s, text_align=0.5)
+    image fgj17 = Text("{size=80}Finnish Game Jam 2017 Otaniemi", text_align=0.5)
+    image theend = Text("{size=80}The End", text_align=0.5)
+    image frag = Text("{size=80}Fragments", text_align=0.5)
+    image thanks = Text("{size=40}Thanks to Samuli Pentti for the concert background image", text_align=0.5)
+
 
 # The game starts here.
 
@@ -762,20 +785,57 @@ label radio2:
     play music fragment_queue
 
     # something changes based on the points?
-    if a_points >= 5:
+    #if a_points >= 5:
         # something if  5 a_points gotten?
-    elif b_points >= 5:
+    #elif b_points >= 5:
         # something if 5 b_points gotten?
-    else:
+    #else:
         # something if neither?
 
-    if bar_choice:
+    #if bar_choice:
         # something if talked to beato
-    else:
+    #else:
         # something if did not talk
 
         #choice variable names:
         # bar_choice cliff_choice graveyard_choice beach_choice concert_choice
     # This ends the game.
+
+    #Jump to the credits
+    call credits
+    return
+
+label credits:
+    $ credits_speed = 20 #scrolling speed in seconds
+    scene black with dissolve #replace this with a fancy background
+    show theend:
+        yanchor 0.5 ypos 0.5
+        xanchor 0.5 xpos 0.5
+    with dissolve
+    with Pause(3)
+    hide theend
+    show cred at Move((0.5, 4.0), (0.5, 0.0), credits_speed, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
+    with Pause(credits_speed)
+    show thanks:
+        yanchor 0.5 ypos 0.5
+        xanchor 0.5 xpos 0.5
+    with dissolve
+    with Pause(3)
+    hide thanks
+    show fgj17:
+        yanchor 0.5 ypos 0.5
+        xanchor 0.5 xpos 0.5
+    with dissolve
+    with Pause(2)
+    hide fgj17
+    with Pause(1)
+    show frag:
+        yanchor 0.5 ypos 0.5
+        xanchor 0.5 xpos 0.5
+    with dissolve
+    with Pause(3)
+    hide frag
+    return
+
 
 return
