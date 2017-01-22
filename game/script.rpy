@@ -241,7 +241,7 @@ label start:
     "Finally. Thank god it's Friday."
 
 label bar:
-    scene bar
+    scene bar with dissolve
 
     play music "bgm/AmbientBGM.mp3"
 
@@ -344,7 +344,7 @@ label bar:
             "I pretend to pay attention, but get lost in thoughts, staring at her lips."
 
 label cliff:
-    scene cliff
+    scene cliff with dissolve
 
     play music "bgm/Foley - Wind16.wav"
 
@@ -408,7 +408,7 @@ label cliff:
             "I stay there, sitting under the trees, and all I can see is that one curl of hair."
 
 label grave:
-    scene grave
+    scene grave with dissolve
 
     play music "bgm/Foley - Rain16.wav"
 
@@ -509,7 +509,9 @@ label grave:
             "It is mine."
 
 label beach:
-    scene beach
+    scene black with dissolve
+    pause 0.5
+    scene beach with dissolve
 
     play music "bgm/Foley - Beach16.wav"
 
@@ -580,7 +582,7 @@ label beach:
 
             "The sounds of the gushing waves and Amy's shouting seem to be coming from somewhere far away as I keep sinking beneath."
 
-            pause 1.0
+            pause 0.5
 
 
         "Maybe I'll just practice a bit closer to the shore":
@@ -619,7 +621,7 @@ label beach:
             "I'm really starting to lose a lot of blood here. I desperately make my way towards the shore, but everything is getting darker around me."
             "I fall face down into the water..."
 
-            pause 1.0
+            pause 0.5
 
 
 label concert:
@@ -774,7 +776,7 @@ label trouble:
     hide guard
 
 label radio2:
-    scene radio
+    scene radio with dissolve
 
     play music "bgm/Foley - ElecNoise16.wav"
 
@@ -810,7 +812,7 @@ label ending:
 
     play music "bgm/AmbientBGM.mp3"
 
-    scene bar
+    scene bar with dissolve
 
     "I go to pick up Amy at the bar. Her shift's just about to end."
 
@@ -854,7 +856,7 @@ label ending:
 
     play music "bgm/Conflict_V1.mp3"
 
-    scene cliff
+    scene cliff with dissolve
 
     if cliff_choice:
         b_excited "She's screaming, falling under the waves."
@@ -863,14 +865,14 @@ label ending:
 
     "She's dead. I was at her funeral."
 
-    scene grave
+    scene grave with dissolve
 
     if graveyard_choice:
         b_sad "This is not my funeral. It is yours."
     else:
         p "Though he had only recently moved here, he was liked by all..."
 
-    scene bar
+    scene bar with dissolve
 
     "I'm... dead? But I'm standing right here!"
 
@@ -883,7 +885,7 @@ label ending:
         scene drown
         "Gasp! I can't... air..."
 
-    scene black
+    scene black with dissolve
 
     stop music
 
@@ -944,7 +946,7 @@ label ending:
 
         b_sad "Goodbye, my..."
 
-        scene bar
+        scene bar with dissolve
 
         "I am at the bar."
 
@@ -984,7 +986,7 @@ label ending:
 
         "The blackness vanishes around me."
 
-        scene radio
+        scene radio with dissolve
 
         play music "bgm/Foley - ElecNoise16.wav"
 
